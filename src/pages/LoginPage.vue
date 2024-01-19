@@ -73,6 +73,7 @@ onMounted(() => {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    //width: 100%;
 
     &__form-section {
         margin-top: 10px;
