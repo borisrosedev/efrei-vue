@@ -13,6 +13,13 @@ defineProps({
     textContent:String
 })
 
+const emit = defineEmits(['message'])
+
+onMounted(() => {
+    emit('message', 'salut papa');
+})
+
+
 </script>
 <style scoped lang="scss">
 
