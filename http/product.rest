@@ -1,0 +1,11 @@
+@hostname = localhost
+@protocol = http
+@port = 3000
+@prefix = /api/
+@host = {{hostname}}:{{port}}
+@url = {{protocol}}://{{host}}{{prefix}}
+
+###
+# @prompt endpoint Your reference code display on webpage
+# @name getProducts
+GET {{url}}{{endpoint}}

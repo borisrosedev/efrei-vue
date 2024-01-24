@@ -1,5 +1,5 @@
 <template>
-    <article>
+    <article class="input-component">
 
         <lable :for="data.id"></lable>
         <input 
@@ -9,6 +9,7 @@
             :id="data.id"
             :type="data.type"
             v-model="inputValue"
+            
         />
         <textarea
             v-else-if="data.type == 'textarea'"  
@@ -49,5 +50,9 @@ watch(inputValue, (val) => {
 
 </script>
 <style scoped lang="scss">
+
+.input-component {
+    margin: 10px 0;
+}
 
 </style>

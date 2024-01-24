@@ -1,7 +1,6 @@
 <template>
     <main class="login-page">
-        <h1>
-        Login Page 
+        <TitleComponent :hType="'h1'" textContent="Login"/>
         <!-- child component -->
         <section class="login-page__form-section">
             <FormComponent 
@@ -10,7 +9,7 @@
                 :onFormSubmit="onFormSubmit"
             />
         </section>
-        </h1>
+ 
     </main>
   
 </template>
@@ -21,6 +20,8 @@
 // c'est un setup intégré 
 import FormComponent from "../components/FormComponent.vue";
 import { ref, onMounted,  reactive } from "vue";
+import TitleComponent from "../components/TitleComponent.vue";
+
 
 // CONSTANTS
 const FORM_INPUTS = [
@@ -46,6 +47,8 @@ const loginData = reactive({
 })
 
 
+//COMPOSABLES 
+
 // FUNCTIONS
 const onFormSubmit = (data) => {
     console.log('🔴 into on form submit')
@@ -56,10 +59,9 @@ const onFormSubmit = (data) => {
 }
 
 
-
-
 onMounted(() => {
     console.log('🟠 Login Page has mounted')
+
 })
 
 </script>

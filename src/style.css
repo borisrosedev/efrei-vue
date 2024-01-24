@@ -39,6 +39,10 @@ figure {
   padding: 0;
 }
 
+main {
+  padding-top: 8vh;
+}
+
 
 img, video {
   object-fit: cover;

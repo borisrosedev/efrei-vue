@@ -1,0 +1,22 @@
+@hostname = localhost
+@protocol = http
+@port = 3000
+@prefix = /api/
+@host = {{hostname}}:{{port}}
+@url = {{protocol}}://{{host}}{{prefix}}
+@endpoint = users
+
+###
+# ###@prompt endpoint Your reference code display on webpage
+# @name getUsers
+GET {{url}}{{endpoint}}
+
+###
+# @name loginUser
+POST {{url}}{{endpoint}}/login
+Content-Type: application/json
+
+{
+    "email":"thomas@gmail.com",
+    "password":"20alexandre?"
+}

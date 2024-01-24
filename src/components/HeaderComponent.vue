@@ -15,7 +15,7 @@
                 class="app-header__icon"
             />
             <font-awesome-icon 
-                @click="" 
+                @click="onLoginClick" 
                 :icon="['fas', 'sign-in-alt']" 
                 class="app-header__icon"
             /> 
@@ -29,10 +29,19 @@
 </template>
 <script setup>
 import { onMounted, ref } from "vue"
+import { useRouter } from "vue-router"
 
+const router = useRouter()
 
 const onHomeClick = () => {
-    console.log('🧤 you clicked on me')
+    console.log('🧤 [onHomeClick]')
+    //router.push({ name: 'landing'});
+    router.push('/');
+}
+
+const onLoginClick = () => {
+    console.log('🧤 [onLoginClick]')
+    router.push('/login');
 }
 
 </script>

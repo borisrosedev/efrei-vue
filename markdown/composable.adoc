@@ -1,0 +1,33 @@
+= Composable 
+
+== Contexte
+
+Dans le contexte des applications Vue, un "composable" est une fonction qui exploite la Composition API de Vue pour encapsuler et réutiliser une logique avec état.
+
+
+== Les tâches courantes 
+
+Lors de la création d'applications frontend, nous devons souvent réutiliser de la logique pour les tâches courantes. 
+
+== Exemple 
+
+Nous pouvons avoir besoin de formater des dates à de nombreux endroits, on extrait une fonction réutilisable pour cela. 
+
+=== Logique sans état
+
+Cette fonction de formatage encapsule la logique sans état : elle prend des arguments et renvoie immédiatement la sortie attendue. 
+
+
+Il existe de nombreuses bibliothèques pour réutiliser la logique sans état, par exemple lodash et date-fns, dont vous avez peut-être déjà entendu parler.
+
+=== Logique avec état
+
+En revanche, la logique avec état implique la gestion d'un état qui change au fil du temps. 
+
+=== ...
+
+Un exemple simple serait de suivre la position actuelle de la souris sur une page. 
+
+=== ...
+
+Dans des scénarios réels, il peut également s'agir d'une logique plus complexe, telle que des interactions tactiles ou l'état de la connexion à une base de données.

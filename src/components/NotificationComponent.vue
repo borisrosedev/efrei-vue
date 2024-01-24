@@ -1,5 +1,5 @@
 <template>
-    <aside v-if="content" class="notification-component">
+    <aside class="notification-component">
         <span aria-label="notification title">{{ title }}</span>
         <p> {{   content ? content : "Aucun message"  }}</p>
     </aside>
@@ -21,7 +21,7 @@ onMounted(() => {
     display: flex;
     border: solid black 2px;
     align-items: center;
-    padding: 20px;
+    padding: 5px 10px;
     position: fixed;
     bottom: 20px;
     align-self: center;
