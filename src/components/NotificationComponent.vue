@@ -1,18 +1,18 @@
 <template>
-    <aside class="notification-component">
-        <span aria-label="notification title">{{ title }}</span>
-        <p> {{   content ? content : "Aucun message"  }}</p>
-    </aside>
+  <aside 
+    :class="`notification-component ${state.type == 'positive' ? 'positive' :  (state.type == 'negative' ? 'negative' : 'info')}`" 
+    v-if="state.content"
+  >
+    <span aria-label="notification title">{{ state.title }}</span>
+    <p> {{ state.content }}</p>
+  </aside>
 </template>
 <script setup>
 import { onMounted } from "vue";
-const { title, content } = defineProps({
-    title: String,
-    content: String
-})
+import { state } from "../stores/message-store"
 
 onMounted(() => {
-    console.log('🟢 notification component has mounted', title, content)
+    console.log('🟢 notification component has mounted', state)
 })
 
 </script>
@@ -24,6 +24,25 @@ onMounted(() => {
     padding: 5px 10px;
     position: fixed;
     bottom: 20px;
-    align-self: center;
+    right: 30%;
+    left: 30%;
+    flex-direction: column;
+    z-index: 10;
+  
+  
+   
+}
+
+.positive {
+  background-color: lightgreen;
+
+}
+
+.negative {
+  background-color: lightcoral;
+}
+
+.info {
+  background-color: lightblue;
 }
 </style>

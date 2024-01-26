@@ -1,35 +1,42 @@
 <template>
-    <header class="title-component">
-        <h1 v-if="hType === 'h1'">{{ textContent }}</h1>
-        <h2 v-if="hType === 'h2'">{{ textContent }}</h2>
-        <h3 v-if="hType === 'h3'">{{ textContent }}</h3>
-    </header>
+  <header class="title-component">
+    <h1 
+      v-if="hType == 'h1'" 
+      v-bind="$attrs"
+    >
+      {{ textContent }}
+    </h1>
+    <h2 
+      v-if="hType == 'h2'" 
+      v-bind="$attrs"
+    >
+      {{ textContent }}
+    </h2>
+    <h3 
+      v-if="hType == 'h3'" 
+      v-bind="$attrs"
+    >
+      {{ textContent }}
+    </h3>
+  </header>
 </template>
 <script setup>
-import { onMounted } from 'vue';
-
 defineProps({
-    hType:String,
-    textContent:String
-})
-
-const emit = defineEmits(['message'])
-
-onMounted(() => {
-    emit('message', 'salut papa');
-})
-
-
+  hType: {
+    type: String,
+    default: "h1",
+  },
+  textContent: {
+    type: String,
+    default: "",
+  },
+  inheritAttrs: {type: Boolean, default: false},
+});
 </script>
 <style scoped lang="scss">
-
-
 .title-component {
-    display: flex;
-    align-items: center;
-    padding: 10px;
- 
-
+  display: flex;
+  align-items: center;
+  padding: 10px;
 }
-
 </style>

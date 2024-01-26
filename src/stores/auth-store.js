@@ -4,11 +4,11 @@ import {
 
 const STATE = {
     isConnected: false, 
-    user: {}
+    user: { id: 1}
 
 }
 
-Object.preventExtensions(STATE)
+//Object.preventExtensions(STATE)
 
 
 const {
@@ -22,6 +22,9 @@ const {
 //NOTE GETTERS
 const fullName = getter('fullname', state => `${state.user.firstname} ${state.user.lastname}`);
 
+const isConnected = getter('connected', state => state.isConnected)
+
+const userGetter = getter('user-info', state => state.user)
 
 //NOTE MUTATIONS
 const setFirstName = mutation('set-first-name', (state, payload) => {
@@ -53,7 +56,7 @@ const loginUser = action('login-user', async (data, mutate) => {
 });
 
 //----------------------------REGISTER-----------------------
-const signupUser = action('signup-user', async (id, mutate) => {
+const signupUser = action('signup-user', async (data, mutate) => {
     console.log('🛍️ [harlem-auth-store : singupUser action]')
     const response = await fetch(import.meta.env.API_URL, {
         headers: {
@@ -74,9 +77,11 @@ const signupUser = action('signup-user', async (id, mutate) => {
 export {
     createStore,
     fullName,
+    isConnected,
     setFirstName,
     setLastName,
     loginUser,
     signupUser,
+    userGetter
 
 }

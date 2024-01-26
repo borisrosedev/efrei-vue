@@ -1,31 +1,30 @@
 <template>
-    <article class="input-component">
-
-        <lable :for="data.id"></lable>
-        <input 
-            v-if="data.type === 'text' || data.type === 'email' || data.type === 'password'"
-            :placeholder="data.placeholder" 
-            :name="data.name" 
-            :id="data.id"
-            :type="data.type"
-            v-model="inputValue"
-            
-        />
-        <textarea
-            v-else-if="data.type == 'textarea'"  
-            placeholder="data.placeholder" 
-            id="data.id"
-            v-model="inputValue"
-            
-        >
-        </textarea>
-        <select :name="data.select.name" :id="data.select.id" v-else>
-        </select>
-    </article>
+  <article class="input-component">
+    <label :for="data.id" />
+    <input 
+      v-if="data.type === 'text' || data.type === 'email' || data.type === 'password'"
+      :id="data.id" 
+      v-model="inputValue" 
+      :placeholder="data.placeholder"
+      :name="data.name"
+      :type="data.type"
+    >
+    <textarea
+      v-else-if="data.type == 'textarea'"  
+      id="data.id" 
+      v-model="inputValue"
+      placeholder="data.placeholder"
+    />
+    <select
+      v-else
+      :id="data.select.id"
+      :name="data.select.name"
+    />
+  </article>
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from "vue"
+import {onMounted, ref, watch } from "vue"
 
 const { data } = defineProps({
     data: Object
@@ -53,6 +52,11 @@ watch(inputValue, (val) => {
 
 .input-component {
     margin: 10px 0;
+    width: 100%;
+
+    input {
+        width: inherit;
+    }
 }
 
 </style>

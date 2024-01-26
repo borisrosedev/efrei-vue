@@ -2,13 +2,13 @@
   "name": "vue-app",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "init": "npm install && npm run dev",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint ./src/**/*.{js,vue}"
+    "lint": "eslint ./src/**/*.{js,vue} --fix"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
@@ -16,7 +16,10 @@
     "@fortawesome/free-regular-svg-icons": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/vue-fontawesome": "^3.0.5",
+    "@tresjs/core": "^3.6.1",
     "harlem": "^3.1.8",
+    "pinia": "^2.1.7",
+    "three": "^0.160.1",
     "vue": "^3.3.11",
     "vue-router": "^4.2.5"
   },

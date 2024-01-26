@@ -1,15 +1,18 @@
 <template>
-    <form class="form-component" @submit.prevent="onSubmit">
-        <section>
-            <InputComponent 
-                v-for="(input, index) of formInputs"
-                :key="index"
-                :data="input"
-                @input-change="onInputChange"
-            />
-        </section>
-        <button> {{ buttonTextContent }} </button>
-    </form>
+  <form
+    class="form-component"
+    @submit.prevent="onSubmit"
+  >
+    <section>
+      <InputComponent 
+        v-for="(input, index) of formInputs"
+        :key="index"
+        :data="input"
+        @input-change="onInputChange"
+      />
+    </section>
+    <button> {{ buttonTextContent }} </button>
+  </form>
 </template>
 <script setup>
 import { ref, watch, onMounted, reactive } from "vue";
@@ -43,14 +46,7 @@ onMounted(() => {
 .form-component {
     display: flex;
     flex-direction: column;
-
-    .form-input {
-
-        background-color: lightgoldenrodyellow;
-
-
-    } 
-
+    width: 100%;
     button {
         margin: 10px 0;
     }

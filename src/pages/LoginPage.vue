@@ -1,17 +1,18 @@
 <template>
-    <main class="login-page">
-        <TitleComponent :hType="'h1'" textContent="Login"/>
-        <!-- child component -->
-        <section class="login-page__form-section">
-            <FormComponent 
-                v-bind:buttonTextContent="'Valider'" 
-                :formInputs="FORM_INPUTS"
-                :onFormSubmit="onFormSubmit"
-            />
-        </section>
- 
-    </main>
-  
+  <main class="login-page">
+    <TitleComponent
+      :h-type="'h1'"
+      text-content="Login"
+    />
+    <!-- child component -->
+    <section class="login-page__form-section">
+      <FormComponent 
+        :button-text-content="'Valider'" 
+        :form-inputs="FORM_INPUTS"
+        :on-form-submit="onFormSubmit"
+      />
+    </section>
+  </main>
 </template>
 
 <script setup>
@@ -19,9 +20,24 @@
 // on reverra la notion de hook , setup en étant un 
 // c'est un setup intégré 
 import FormComponent from "../components/FormComponent.vue";
-import { ref, onMounted,  reactive } from "vue";
+import { ref, onMounted,  reactive, onUnmounted } from "vue";
 import TitleComponent from "../components/TitleComponent.vue";
+import { setNewMessage, setContent } from "../stores/message-store"
 
+let timer = null;
+// hooks 
+onMounted(() => {
+    console.log('🟠 Login Page has mounted')
+    setNewMessage({ title: 'Login Page', type: 'positive', content: 'Connectez-vous' })
+    timer = setTimeout(() => {
+        setContent('');
+    }, 3000)
+})
+
+onUnmounted(() => {
+    setNewMessage({ title: '', type: '', content: '' })
+    clearTimeout(timer);
+})
 
 // CONSTANTS
 const FORM_INPUTS = [
@@ -59,10 +75,7 @@ const onFormSubmit = (data) => {
 }
 
 
-onMounted(() => {
-    console.log('🟠 Login Page has mounted')
 
-})
 
 </script>
 
@@ -75,15 +88,33 @@ onMounted(() => {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    opacity: 0;
+    animation: loginPageAnimation 1000ms ease-in-out forwards;
     //width: 100%;
 
     &__form-section {
-        margin-top: 10px;
+
         display: flex;
+        padding: 20px;
+        width: 50%;
+        background-color: rgba($color: #000000, $alpha: 0.7);
        
     }
 
 
+}
+
+@keyframes loginPageAnimation {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+    
 }
 
   
