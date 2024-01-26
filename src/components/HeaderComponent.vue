@@ -12,15 +12,21 @@
             @click="onHomeClick"
           />
         </li>
+        <li>
+          <font-awesome-icon
+            :icon="['fas', 'shop']"
+            @click="onShopClick"
+          />
+        </li>
 
         <li class="bag-icon-li">
           <font-awesome-icon
             :icon="['fas', 'shopping-bag']"
             class="app-header__icon"
-            @click="onShopClick"
+            @click="onCartClick"
           />
           <small class="cart-length-icon" v-if="cartGetter.length">{{
-            cartGetter.length 
+            cartGetter.length
           }}</small>
         </li>
         <li>
@@ -44,7 +50,7 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
-import {  cartGetter } from "../stores/cart-store";
+import { cartGetter } from "../stores/cart-store";
 import { watchEffect } from "vue";
 
 onMounted(() => {
@@ -69,6 +75,11 @@ const onLoginClick = () => {
 const onShopClick = () => {
   console.log("🧤 [onShopClick]");
   router.push("/shop");
+};
+
+const onCartClick = () => {
+  console.log("🧤 [onCartClick]");
+  router.push("/cart");
 };
 
 onUnmounted(() => {

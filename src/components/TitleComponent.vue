@@ -21,8 +21,12 @@ defineProps({
     type: String,
     default: "",
   },
-  inheritAttrs: {type: Boolean, default: false},
+
 });
+
+defineOptions({
+  inheritAttrs: false,
+})
 </script>
 <style scoped lang="scss">
 .title-component {

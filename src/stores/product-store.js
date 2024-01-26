@@ -31,7 +31,7 @@ export const useProductStore = defineStore('products', () => {
 
     async function getProducts() {
         try {
-            products.value = await(await fetch('http://localhost:3000/api/products')).json();
+            products.value = await(await fetch(import.meta.env.VITE_API_URL_PRODUCTS)).json();
         } catch(e){
             console.log('❌ Echec de la communication avec le serveur')
         }

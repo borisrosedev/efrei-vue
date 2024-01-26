@@ -6,7 +6,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 //---------------------FONTAWESOME------------------------
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faHome, faSignInAlt, faSignOutAlt, faShoppingBag, faCartPlus, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faSignInAlt, faSignOutAlt, faShoppingBag, faCartPlus, faPlus, faShop, faMinus } from '@fortawesome/free-solid-svg-icons'
 //---------------------HARLEM-----------------
 import {
     createVuePlugin
@@ -24,12 +24,13 @@ import HomePage from './pages/HomePage.vue'
 import LoginPage from './pages/LoginPage.vue'
 import DashboardPage from './pages/DashboardPage.vue'
 import ShopPage from './pages/ShopPage.vue'
-import NoteBook from './components/NoteBook.vue'
+import CartPage from './pages/CartPage.vue'
 import NotFoundPage from './pages/NotFoundPage.vue'
+
 /** LES CHOSES DYNAMIQUES UTILISANT LES PLUGINS  */
 //-------------------------AJOUT DES ICONES--------------------------
 /* add icons to the library */
-library.add(faHome, faSignInAlt, faSignOutAlt, faShoppingBag, faCartPlus, faPlus)
+library.add(faHome, faSignInAlt, faSignOutAlt, faShoppingBag, faCartPlus, faPlus, faShop, faMinus)
 // harlem related 
 //-------------------------AJOUT DES ROUTES-----------------------
 const routes = [
@@ -62,6 +63,11 @@ const routes = [
         name: 'shop',
         component: ShopPage ,
         //meta: { transition: 'slide-left' },
+    }, 
+    {
+        path: '/cart',
+        name: 'cart',
+        component: CartPage
     },
     { 
         path: '/:pathMatch(.*)*', 
@@ -80,11 +86,11 @@ const router = createRouter({
 
 //-----------------------MIDDLEWARES----------------------------
 //-------------TRANSITION----------------------------------
-router.afterEach((to, from) => {
-    const toDepth = to.path.split('/').length
-    const fromDepth = from.path.split('/').length
-    to.meta.transition = toDepth < fromDepth ? 'slide-right 500ms ease-in' : 'slide-left 500ms ease-in'
-})
+// router.afterEach((to, from) => {
+//     const toDepth = to.path.split('/').length
+//     const fromDepth = from.path.split('/').length
+//     to.meta.transition = toDepth < fromDepth ? 'slide-right 500ms ease-in' : 'slide-left 500ms ease-in'
+// })
 
 //-------------NAVIGATION GUARDS-----------------------
 router.beforeEach((to, from, next) => {
