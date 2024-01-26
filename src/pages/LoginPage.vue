@@ -23,7 +23,10 @@ import FormComponent from "../components/FormComponent.vue";
 import { ref, onMounted,  reactive, onUnmounted } from "vue";
 import TitleComponent from "../components/TitleComponent.vue";
 import { setNewMessage, setContent } from "../stores/message-store"
+import { loginUser, userGetter } from "../stores/auth-store"
+import { useRouter } from "vue-router"
 
+const router = useRouter()
 let timer = null;
 // hooks 
 onMounted(() => {
@@ -63,14 +66,16 @@ const loginData = reactive({
 })
 
 
-//COMPOSABLES 
-
 // FUNCTIONS
 const onFormSubmit = (data) => {
     console.log('🔴 into on form submit')
     loginData.email = data.email
     loginData.password = data.password
-    console.log('loginData', loginData)
+    loginUser(loginData)
+        .then(() => {
+            router.push('/dashboard/' +  userGetter.value.user.id)
+        })
+
 
 }
 

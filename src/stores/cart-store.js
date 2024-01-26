@@ -35,6 +35,7 @@ const addToCart = action('add-cart', async (data, mutate) => {
             if(cartProduct){
                const index = state.cart.indexOf(cartProduct)
                state.cart[index].quantity += 1
+                console.log('new cart', state.cart)
             } else {
                 state.cart.push({ product: data, quantity: 1})
             }

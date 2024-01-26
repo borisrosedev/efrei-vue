@@ -35,7 +35,6 @@
           <font-awesome-icon
             :icon="['fas', 'sign-out-alt']"
             class="app-header__icon"
-            @click=""
           />
         </li>
       </ul>
@@ -45,7 +44,7 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
-import { state, cartGetter } from "../stores/cart-store";
+import {  cartGetter } from "../stores/cart-store";
 import { watchEffect } from "vue";
 
 onMounted(() => {

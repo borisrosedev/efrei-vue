@@ -20,7 +20,6 @@ export const useProductStore = defineStore('products', () => {
             const backupFileProducts = await backupFile.json()
             localStorage.setItem('productState', JSON.stringify(backupFileProducts))
             const localStorageBackup = localStorage.getItem('productState')
-            console.log('localStorageBackpup', localStorageBackup)
             backupProducts.value = JSON.parse(localStorageBackup)
         }
           

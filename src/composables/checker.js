@@ -2,6 +2,7 @@ import { ref, onMounted } from "vue"
 
 // logique avec état
 export function useChecker (){
+    // fermeture  -- closure ( mdn )
 
     const isValid = ref(false)
 

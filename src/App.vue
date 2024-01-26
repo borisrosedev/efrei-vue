@@ -1,21 +1,20 @@
 <template>
   <HeaderComponent />
-  <video autoplay loop muted>
-    <source 
-      src="./assets/coffee.mp4" 
-      type="video/mp4" 
-    >
-  </video>
-  <router-view 
-    v-slot="{ Component, route }" 
+  <video 
+    autoplay 
+    loop 
+    muted
   >
+    <source src="./assets/coffee.mp4" type="video/mp4" />
+  </video>
+  <router-view v-slot="{ Component, route }">
     <transition :name="route.meta.transition">
       <component :is="Component" />
     </transition>
   </router-view>
   <!-- <router-view 
     v-slot="{ Component, route }" 
-    name="additionnal"
+    name="sidebard"
   >
     <transition :name="route.meta.transition">
       <component :is="Component" />
@@ -28,7 +27,6 @@
 import { onMounted } from "vue";
 import NotificationComponent from "./components/NotificationComponent.vue";
 import HeaderComponent from "./components/HeaderComponent.vue";
-//NOTE LES IMPORTS
 
 // life cycle hook number one : onMounted
 // hook de cycle de vie des components
@@ -37,4 +35,3 @@ onMounted(() => {
   console.log("🔵 App.vue has mounted");
 });
 </script>
-<style lang="scss"></style>

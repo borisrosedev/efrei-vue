@@ -2,15 +2,15 @@ import {
     createStore
 } from 'harlem';
 
+
+// deuxième chose à définir
 const STATE = {
     isConnected: false, 
-    user: { id: 1}
+    user: {}
 
 }
 
-//Object.preventExtensions(STATE)
-
-
+// troisième chose à faire c'est de destructurer createStore()
 const {
     state, 
     getter,
@@ -19,11 +19,11 @@ const {
     ...store
 } = createStore('auth', STATE);
 
+
+// FACULTATIFS !!
+
 //NOTE GETTERS
-const fullName = getter('fullname', state => `${state.user.firstname} ${state.user.lastname}`);
-
 const isConnected = getter('connected', state => state.isConnected)
-
 const userGetter = getter('user-info', state => state.user)
 
 //NOTE MUTATIONS
@@ -40,7 +40,7 @@ const setLastName = mutation('set-last-name', (state, payload) => {
 //----------------------------LOGIN-----------------------
 const loginUser = action('login-user', async (data, mutate) => {
     console.log('🛍️ [harlem-auth-store : loginUser action]')
-    const response = await fetch(import.meta.env.API_URL, {
+    const response = await fetch(import.meta.env.VITE_API_URL + '/login', {
         headers: {
             "Content-Type":"application/json;charset=utf-8"
         },
@@ -52,6 +52,8 @@ const loginUser = action('login-user', async (data, mutate) => {
 
     mutate(state => {
         state.user = user;
+        console.log('----------------------------')
+        console.log('🛍️ 🟢 after logging in', state.user)
     });
 });
 
@@ -76,7 +78,6 @@ const signupUser = action('signup-user', async (data, mutate) => {
 
 export {
     createStore,
-    fullName,
     isConnected,
     setFirstName,
     setLastName,

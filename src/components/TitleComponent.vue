@@ -1,21 +1,12 @@
 <template>
   <header class="title-component">
-    <h1 
-      v-if="hType == 'h1'" 
-      v-bind="$attrs"
-    >
+    <h1 v-if="hType == 'h1'" v-bind="$attrs">
       {{ textContent }}
     </h1>
-    <h2 
-      v-if="hType == 'h2'" 
-      v-bind="$attrs"
-    >
+    <h2 v-if="hType == 'h2'" v-bind="$attrs">
       {{ textContent }}
     </h2>
-    <h3 
-      v-if="hType == 'h3'" 
-      v-bind="$attrs"
-    >
+    <h3 v-if="hType == 'h3'" v-bind="$attrs">
       {{ textContent }}
     </h3>
   </header>

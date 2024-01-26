@@ -8,9 +8,20 @@
 </template>
 <script setup></script>
 <style lang="scss" scoped>
-.not-found-page {
+
+@mixin FlexBox($justif: center, $align: center){
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: $justif;
+  @if $justif == center {
+    align-items: center
+  }@else {
+    align-items: $align
+  }
+}
+
+.not-found-page {
+  @include FlexBox(center);
+  flex-direction: column;
+  width: 100%;
 }
 </style>

@@ -42,7 +42,8 @@ const routes = [
     },
     {
         path: '/landing',
-        redirect: '/'
+        redirect: '/',
+        sensitive: true
     },
     { 
         path: '/login', 
@@ -52,12 +53,13 @@ const routes = [
     },
     { 
         path: '/dashboard/:id(\\d+)', 
-        components: { default: DashboardPage }, 
+        component: DashboardPage, 
         name: 'dashboard',
         //meta: { transition: 'slide-left' }
     },
     { 
         path: '/shop', 
+        name: 'shop',
         component: ShopPage ,
         //meta: { transition: 'slide-left' },
     },
@@ -71,8 +73,8 @@ const routes = [
 //-------------------------AJOUT DU ROUTER-----------------------
 const router = createRouter({
     history: createWebHashHistory(),
-    routes, 
-    strict: true
+    routes: routes, 
+    strict: true,
 })
 
 
@@ -86,13 +88,19 @@ router.afterEach((to, from) => {
 
 //-------------NAVIGATION GUARDS-----------------------
 router.beforeEach((to, from, next) => {
+
+   // IMPORT DYNAMIQUE D'UN MODULE 
+   // POUR ETRE CERTAIN QUE CETTE CALLBACK CONNAIT L'INTÉGRALITE DU FICHIER
+   // AVANT DE POURSUIVRE AVEC LA LOGIQUE ...
+   // LAZY LOADING ...
     const harlerUserStore = import('../src/stores/auth-store')
         .then((result) => {
-            console.log('result', result, to)
-            console.log('result userGetter', result.userGetter.value)
-            if (to.name == 'dashboard' &&  (result.userGetter.value.id).toString() !== to.params.id) next({ name: 'login' })
-            else next()
-
+            if (to.name == 'dashboard' &&  (result.userGetter.value.user.id).toString() !== to.params.id) { 
+                next({ name: 'login' })
+            } else {
+                next()
+            }
+           
         })
         .catch(error => {
             console.error('Une erreur est survenue lors de l\'importation du module :', error);
@@ -105,9 +113,10 @@ router.beforeEach((to, from, next) => {
 //-------------------------AJOUT DES PLUGINS À L'APPLICATION ----------------------
 const app = createApp(App)
 const pinia = createPinia()
+const harlem = createVuePlugin()
 app.use(router)
 app.use(Tres)
-app.use(createVuePlugin())
+app.use(harlem)
 app.use(pinia)
 app.component('font-awesome-icon', FontAwesomeIcon)
 app.mount('#app')
